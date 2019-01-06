@@ -1,0 +1,9 @@
+<div id="refresher" class="refresher">
+  <ion-img id="arrowRounded" src="assets/images/arrow-rounded.png" class="arrow-rounded"></ion-img>
+</div>
+<div id="content" class="container" (scroll)="onScroll($event)">
+  <div class="card" *ngFor="let card of cards">
+    <div class="number">{{card.number}}</div>
+    <div class="context">{{card.context}}</div>
+  </div>
+</div>
