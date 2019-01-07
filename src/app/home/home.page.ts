@@ -1,5 +1,4 @@
-import {Component, HostListener, OnInit, Renderer2} from '@angular/core';
-import * as Hammer from 'hammerjs';
+import {Component} from '@angular/core';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',

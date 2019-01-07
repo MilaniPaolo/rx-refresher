@@ -8,9 +8,8 @@ import * as Hammer from 'hammerjs';
   styleUrls: ['./div-container.component.scss']
 })
 export class DivContainerComponent implements OnInit {
+
   cards: Card[] = [];
-  previousValue = 0;
-  scrollDir: string = undefined;
   contentElement: any;
   refresherElement: any;
   imageElement: any;
@@ -36,27 +35,22 @@ export class DivContainerComponent implements OnInit {
   @HostListener('scroll', ['$event'])
   onScroll(event) {
     const tracker = event.target;
-    if (tracker.scrollTop > this.previousValue) {
-      this.scrollDir = 'down';
-    } else {
-      this.scrollDir = 'up';
-    }
-    const limit = tracker.scrollHeight - tracker.clientHeight;
-    if (this.scrollDir === 'down') {
+    if(tracker.scrollTop > 0) {
       this.mc.get('pan').set({ enable: false });
-    } else if (this.scrollDir === 'up' && event.target.scrollTop <= Math.floor(limit / 8)) {
+    } else if (tracker.scrollTop === 0) {
       this.mc.get('pan').set({ enable: true, direction: Hammer.DIRECTION_ALL});
-      this.mc.on('panstart panend panup pandown', (ev) => {
+      this.mc.on('panend panup pandown', (ev) => {
         switch (ev.type) {
           case 'pandown':
-            this.renderer.setStyle(this.refresherElement, 'transform', 'translateY(' + ev.distance / 2 + 'px)');
-            this.renderer.setStyle(this.imageElement, 'transform', 'rotate(' + -ev.distance / 2 + 'deg)');
+            this.renderer.setStyle(this.refresherElement, 'transform', 'translateY(' + ev.distance + 'px)');
+            this.renderer.setStyle(this.imageElement, 'transform', 'rotate(' + -ev.distance + 'deg)');
             break;
           case 'panend':
             this.renderer.setStyle(this.refresherElement, 'transform', 'translateY(' + -60 + 'px)');
             this.renderer.setStyle(this.imageElement, 'transform', 'rotate(' + 0 + 'deg)');
-
-            break;
+            this.mc.get('pan').set({ enable: false });
+            tracker.scrollTop = 0;
+          break;
           case 'panup':
             if (ev.distance < 50) {
               this.renderer.setStyle(this.refresherElement, 'transform', 'translateY(' + -60 + 'px)');
@@ -64,15 +58,12 @@ export class DivContainerComponent implements OnInit {
             } else if (this.refresherElement.style.cssText === 'transform: translateY(-60px);') {
               this.mc.get('pan').set({ enable: false });
             } else {
-              this.renderer.setStyle(this.refresherElement, 'transform', 'translateY(' + ev.distance / 2 + 'px)');
-              this.renderer.setStyle(this.imageElement, 'transform', 'rotate(' + -ev.distance / 2 + 'deg)');
+              this.renderer.setStyle(this.refresherElement, 'transform', 'translateY(' + ev.distance + 'px)');
+              this.renderer.setStyle(this.imageElement, 'transform', 'rotate(' + -ev.distance + 'deg)');
             }
-            break;
-          default:
             break;
         }
       });
     }
-    this.previousValue = tracker.scrollTop;
   }
 }

@@ -1,0 +1,28 @@
+.container {
+  position: absolute;
+  top: 56px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: lightgray;
+  overflow-y: scroll;
+
+  .card {
+    height: 200px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 1px 2px 0 3px rgba(lightgray, .4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .number {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+  }
+}

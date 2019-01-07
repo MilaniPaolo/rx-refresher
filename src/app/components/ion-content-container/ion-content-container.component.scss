@@ -1,0 +1,24 @@
+.container {
+  position: absolute;
+  top: 44px;
+  background-color: lightgray;
+  overflow-y: scroll;
+  padding: 10px;
+
+  .card {
+    height: 200px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 1px 2px 0 3px rgba(lightgray, .4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .number {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+  }
+}
