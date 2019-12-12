@@ -1,7 +1,0 @@
-{
-  "name": "refrescher",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}

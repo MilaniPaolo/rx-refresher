@@ -1,32 +1,23 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { NgModule } from '@angular/core';
+
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { RefresherDirective } from './directives/refresher.directive';
-import { HomePageModule } from './home/home.module';
-import 'hammerjs';
+import {NgRxRefresherComponent} from './components/ngrx-refresher/ngrx-refresher.component';
+import {HttpClientModule} from '@angular/common/http';
+import {RefresherComponent} from './components/refresher/refresher.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RefresherDirective,
+    NgRxRefresherComponent,
+    RefresherComponent
   ],
-  entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
-    AppRoutingModule,
-    HomePageModule
+    HttpClientModule
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

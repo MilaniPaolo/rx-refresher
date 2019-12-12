@@ -1,0 +1,12 @@
+<app-refresher (refresh)="newsService.refresh$.next()"></app-refresher>
+
+<div class="main-content">
+
+  <h3 style="margin: 1.5em; color: white">Latest News</h3>
+
+  <div class="news-card" *ngFor="let news of (news$ | async)">
+    <h4 style="font-weight: bold">{{news.title}}</h4>
+    <h5>{{news.subtitle}}</h5>
+    <div>{{news.content}}</div>
+  </div>
+</div>
